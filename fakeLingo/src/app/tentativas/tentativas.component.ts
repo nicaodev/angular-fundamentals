@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Coracao } from '../shared/coracao.model';
 
 @Component({
@@ -6,16 +6,22 @@ import { Coracao } from '../shared/coracao.model';
   templateUrl: './tentativas.component.html',
   styleUrls: ['./tentativas.component.css']
 })
-export class TentativasComponent implements OnInit {
+export class TentativasComponent implements OnInit, OnChanges {
 
-  s2Vazio = '/assets/coracao_vazio.png';
-  s2Cheio = '/assets/coracao_cheio.png';
+  @Input() tentativas: number;
 
   coracoes: Coracao[] = [
     new Coracao(true), new Coracao(true), new Coracao(true)
     // nao é necessário os outros paramêtros pois na classe estão default.
   ];
+  ngOnChanges() {
 
+    if (this.tentativas !== this.coracoes.length) {
+      let indice = this.coracoes.length - this.tentativas;
+      this.coracoes[indice - 1].cheio = false;
+    }
+
+  }
   ngOnInit() {
   }
 
