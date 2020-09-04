@@ -12,14 +12,14 @@ export class PainelComponent implements OnInit, OnDestroy {
 
   frases: Frase[] = FRASES;
   instrucao = 'Traduza a frase';
-  resposta: string = '';
+  resposta = '';
 
   rodada = 0;
   rodadaFrase: Frase;
 
   progresso = 0; // @Input
 
-  tentativas: number = 3;
+  tentativas = 3;
 
   @Output() encerrarJogo: EventEmitter<string> = new EventEmitter();
 
