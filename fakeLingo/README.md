@@ -8,11 +8,11 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Deploy
 
-ng build --prod 
+`ng build --prod `
 
 ## Deploy local via pacote http-server
 
-npm install http-server -g
+`npm install http-server -g`
 
   Navegar até a pasta do projeto, na dist (build produção). Abrir o cmd e executar o comando: http-server
 
@@ -20,8 +20,8 @@ npm install http-server -g
 
   Starting up http-server, serving ./
 Available on:
-  http://192.168.xx.xx:8080
-  http://127.0.0.1:8080
+  `http://192.168.xx.xx:8080` 
+ ` http://127.0.0.1:8080 `
 
 No primeiro IP, caso outros pc's estejam na mesma rede o pacote npm estará disponibilizando a pasta dist permitindo requisições http.
 O Segundo ip é local.
