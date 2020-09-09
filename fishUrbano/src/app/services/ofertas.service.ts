@@ -61,8 +61,14 @@ export class OfertasService {
   public getOfertasPromise(): Promise<Oferta[]> {
     return new Promise((resolve, reject) => {
       // Alguma lógica de requisição que ao finalizar chama o 'resolve'.
-      console.log('passou aqui')
-      resolve(this.ofertas);
+      let deu_certo = false; // logica hipotética.
+
+      if (deu_certo) {
+        resolve(this.ofertas);
+      } else {
+        reject({ codigo_erro: 404, msg: 'Lógica hipotética apenas para simular erro' });
+      }
+
     });
   }
 
