@@ -1,4 +1,5 @@
 import { Oferta } from '../shared/oferta.model';
+import { promise } from 'protractor';
 
 export class OfertasService {
 
@@ -56,4 +57,14 @@ export class OfertasService {
   public getOfertas(): Array<Oferta> {
     return this.ofertas;
   }
+
+  public getOfertasPromise(): Promise<Oferta[]> {
+    return new Promise((resolve, reject) => {
+      // Alguma lógica de requisição que ao finalizar chama o 'resolve'.
+      console.log('passou aqui')
+      resolve(this.ofertas);
+    });
+  }
+
 }
+
