@@ -64,7 +64,7 @@ export class OfertasService {
       let deu_certo = false; // logica hipotética.
 
       if (!deu_certo) {
-        setTimeout(() => resolve(this.ofertas), 3000); // simulando uma requisição.
+        setTimeout(() => resolve(this.ofertas), 1000); // simulando uma requisição.
       } else {
         reject({ codigo_erro: 404, msg: 'Lógica hipotética apenas para simular erro' });
       }
