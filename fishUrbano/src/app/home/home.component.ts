@@ -15,15 +15,17 @@ export class HomeComponent implements OnInit {
   public ofertas: Oferta[];
 
   ngOnInit() {
-    // this.ofertas = this.ofertasService.getOfertas();
+    // this.ofertasService.getOfertasPromise()
+    //   .then(
+    //     (ofertas: Oferta[]) => { this.ofertas = ofertas; },
+    //   )
+    //   .catch((param: any) => { console.log(param); });
 
-    this.ofertasService.getOfertasPromise()
+    this.ofertasService.getOfertas()
       .then(
         (ofertas: Oferta[]) => { this.ofertas = ofertas; },
       )
       .catch((param: any) => { console.log(param); });
-
-    console.log('tem oferta', this.ofertas);
   }
 
 }
