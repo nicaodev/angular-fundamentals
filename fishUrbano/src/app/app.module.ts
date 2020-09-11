@@ -9,14 +9,18 @@ import { RodapeComponent } from './rodape/rodape.component';
 
 // Modo para requisições HTTTP. Neste projeto usa-se o json-server uma fake api que permite requisições.
 import { HttpModule } from '@angular/http';
+import { RestaurantesComponent } from './restaurantes/restaurantes.component';
+import { DiversaoComponent } from './diversao/diversao.component';
 
 @NgModule({
-  declarations: [
+  declarations: [		
     AppComponent,
     TopoComponent,
     HomeComponent,
-    RodapeComponent
-  ],
+    RodapeComponent,
+      RestaurantesComponent,
+      DiversaoComponent
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
