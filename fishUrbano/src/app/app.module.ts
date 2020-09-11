@@ -13,14 +13,14 @@ import { RestaurantesComponent } from './restaurantes/restaurantes.component';
 import { DiversaoComponent } from './diversao/diversao.component';
 
 @NgModule({
-  declarations: [		
+  declarations: [
     AppComponent,
     TopoComponent,
     HomeComponent,
     RodapeComponent,
-      RestaurantesComponent,
-      DiversaoComponent
-   ],
+    RestaurantesComponent,
+    DiversaoComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
