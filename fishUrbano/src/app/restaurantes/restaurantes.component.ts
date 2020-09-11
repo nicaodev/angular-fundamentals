@@ -21,7 +21,7 @@ export class RestaurantesComponent implements OnInit {
     this.ofertasService.getOfertasCategorias(this.categoriaFiltro)
       .then((oferta: Oferta[]) => {
         this.ofertas = oferta;
-      })
+      });
   }
 
 }
