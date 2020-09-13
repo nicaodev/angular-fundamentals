@@ -6,14 +6,12 @@ import { DiversaoComponent } from './diversao/diversao.component';
 import { OfertaComponent } from './oferta/oferta.component';
 
 
-
-
-
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'restaurantes', component: RestaurantesComponent },
   { path: 'diversao', component: DiversaoComponent },
-  { path: 'oferta', component: OfertaComponent }
+  { path: 'oferta', component: HomeComponent },
+  { path: 'oferta/:id', component: OfertaComponent }
 
 ];
 
