@@ -23,7 +23,13 @@ export class OfertasService {
       .then((resposta: any) => resposta.json());
   }
 
-  public getOfertasCategorias(categoria: string): Promise<Oferta[]> {
+  public getOfertasRestaurante(categoria: string): Promise<Oferta[]> {
+    return this.http.get(`http://localhost:3000/ofertas?categoria=${categoria}`)
+    .toPromise()
+      .then((retorno: any) => retorno.json());
+  }
+
+  public getOfertasDiversao (categoria: string): Promise<Oferta[]>{
     return this.http.get(`http://localhost:3000/ofertas?categoria=${categoria}`)
     .toPromise()
       .then((retorno: any) => retorno.json());
