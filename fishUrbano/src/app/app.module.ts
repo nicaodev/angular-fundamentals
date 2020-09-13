@@ -11,16 +11,18 @@ import { RodapeComponent } from './rodape/rodape.component';
 import { HttpModule } from '@angular/http';
 import { RestaurantesComponent } from './restaurantes/restaurantes.component';
 import { DiversaoComponent } from './diversao/diversao.component';
+import { OfertaComponent } from './oferta/oferta.component';
 
 @NgModule({
-  declarations: [
+  declarations: [	
     AppComponent,
     TopoComponent,
     HomeComponent,
     RodapeComponent,
     RestaurantesComponent,
-    DiversaoComponent
-  ],
+    DiversaoComponent,
+      OfertaComponent
+   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
