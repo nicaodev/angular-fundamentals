@@ -34,6 +34,11 @@ export class OfertasService {
     .toPromise()
       .then((retorno: any) => retorno.json());
   }
+  public getOfertaId (id: number): Promise<Oferta>{
+    return this.http.get(`http://localhost:3000/ofertas?id=${id}`)
+    .toPromise()
+      .then((retorno: any) => retorno.json().shift()/*ou [0]*/);
+  }
 
   // public getOfertasPromise(): Promise<Oferta[]> {
   //   return new Promise((resolve, reject) => {
