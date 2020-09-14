@@ -4,38 +4,35 @@ import { promise } from 'protractor';
 import { HttpModule, Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
-
+import { URL_API } from 'src/environments/app.api';
 
 // Decorandoo service com injectable para ser possivel que esta classe receber um serviço externo.
 @Injectable()
 export class OfertasService {
 
-  constructor(private http: Http) {
-
-  }
+  constructor(private http: Http) {}
 
   public getOfertas(): Promise<Oferta[]> {
     // Efetuar uma requisição http e retornar uma promise Oferta[]
 
-    return this.http.get('http://localhost:3000/ofertas?destaque=true')
+    return this.http.get(`${URL_API}?destaque=true`)
       .toPromise()
       .then((resposta: any) => resposta.json());
   }
 
   public getOfertasRestaurante(categoria: string): Promise<Oferta[]> {
-    return this.http.get(`http://localhost:3000/ofertas?categoria=${categoria}`)
+    return this.http.get(`${URL_API}?categoria=${categoria}`)
     .toPromise()
       .then((retorno: any) => retorno.json());
   }
 
   public getOfertasDiversao (categoria: string): Promise<Oferta[]>{
-    return this.http.get(`http://localhost:3000/ofertas?categoria=${categoria}`)
+    return this.http.get(`${URL_API}?categoria=${categoria}`)
     .toPromise()
       .then((retorno: any) => retorno.json());
   }
   public getOfertaId (id: number): Promise<Oferta>{
-    return this.http.get(`http://localhost:3000/ofertas?id=${id}`)
+    return this.http.get(`${URL_API}?id=${id}`)
     .toPromise()
       .then((retorno: any) => retorno.json().shift()/*ou [0]*/);
   }
