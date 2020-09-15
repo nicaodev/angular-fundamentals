@@ -10,31 +10,37 @@ import { URL_API } from 'src/environments/app.api';
 @Injectable()
 export class OfertasService {
 
-  constructor(private http: Http) {}
+  constructor(private http: Http) { }
 
   public getOfertas(): Promise<Oferta[]> {
     // Efetuar uma requisição http e retornar uma promise Oferta[]
 
-    return this.http.get(`${URL_API}?destaque=true`)
+    return this.http.get(`${URL_API}/ofertas?destaque=true`)
       .toPromise()
       .then((resposta: any) => resposta.json());
   }
 
   public getOfertasRestaurante(categoria: string): Promise<Oferta[]> {
-    return this.http.get(`${URL_API}?categoria=${categoria}`)
-    .toPromise()
+    return this.http.get(`${URL_API}/ofertas?categoria=${categoria}`)
+      .toPromise()
       .then((retorno: any) => retorno.json());
   }
 
-  public getOfertasDiversao (categoria: string): Promise<Oferta[]>{
-    return this.http.get(`${URL_API}?categoria=${categoria}`)
-    .toPromise()
+  public getOfertasDiversao(categoria: string): Promise<Oferta[]> {
+    return this.http.get(`${URL_API}/ofertas?categoria=${categoria}`)
+      .toPromise()
       .then((retorno: any) => retorno.json());
   }
-  public getOfertaId (id: number): Promise<Oferta>{
-    return this.http.get(`${URL_API}?id=${id}`)
-    .toPromise()
+  public getOfertaId(id: number): Promise<Oferta> {
+    return this.http.get(`${URL_API}/ofertas?id=${id}`)
+      .toPromise()
       .then((retorno: any) => retorno.json().shift()/*ou [0]*/);
+  }
+
+  public getComoUsarOfertaId(id: number): Promise<string> {
+    return this.http.get(`${URL_API}/como-usar?id=${id}`)
+      .toPromise()
+      .then((retorno: any) => retorno.json().shift().descricao);
   }
 
   // public getOfertasPromise(): Promise<Oferta[]> {
