@@ -43,6 +43,12 @@ export class OfertasService {
       .then((retorno: any) => retorno.json().shift().descricao);
   }
 
+  public getOndeFicaOfertaId(id: number): Promise<string> {
+    return this.http.get(`${URL_API}/onde-fica?id=${id}`)
+      .toPromise()
+      .then((r: any) => r.json()[0].descricao);
+  }
+
   // public getOfertasPromise(): Promise<Oferta[]> {
   //   return new Promise((resolve, reject) => {
   //     // Alguma lógica de requisição que ao finalizar chama o 'resolve'.
