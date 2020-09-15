@@ -21,10 +21,7 @@ export class DiversaoComponent implements OnInit {
     this.ofertasService.getOfertasDiversao(this.categoriaFiltro)
       .then((oferta: Oferta[]) => {
         this.ofertas = oferta;
-        console.log('deu certo', this.ofertas);
       });
-
-
   }
 
 }
