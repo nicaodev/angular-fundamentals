@@ -19,7 +19,7 @@ export class OndeFicaComponent implements OnInit {
     this.ofertasService.getOndeFicaOfertaId(this.route.parent.snapshot.params['id'])
       .then((retorno: string) => {
         this.ondeFica = retorno;
-      })
+      });
   }
 
 }

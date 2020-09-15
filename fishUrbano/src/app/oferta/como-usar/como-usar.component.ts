@@ -14,7 +14,7 @@ export class ComoUsarComponent implements OnInit {
   constructor(private router: ActivatedRoute,
     private ofertasService: OfertasService) { }
 
-  comoUsar: string = '';
+  comoUsar = '';
 
   ngOnInit() {
 
