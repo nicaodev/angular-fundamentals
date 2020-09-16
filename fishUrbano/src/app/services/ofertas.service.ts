@@ -1,11 +1,11 @@
 import { Oferta } from '../shared/oferta.model';
 import { URL_API } from 'src/environments/app.api';
 
-import { HttpModule, Http } from '@angular/http';
+import { HttpModule, Http, Response } from '@angular/http';
 import { Injectable } from '@angular/core';
 
 
-import { map } from 'rxjs/operators';
+import { map, retry } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 
@@ -20,40 +20,43 @@ export class OfertasService {
 
     return this.http.get(`${URL_API}/ofertas?destaque=true`)
       .toPromise()
-      .then((resposta: any) => resposta.json());
+      .then((resposta: Response) => resposta.json());
   }
 
   public getOfertasRestaurante(categoria: string): Promise<Oferta[]> {
     return this.http.get(`${URL_API}/ofertas?categoria=${categoria}`)
       .toPromise()
-      .then((retorno: any) => retorno.json());
+      .then((retorno: Response) => retorno.json());
   }
 
   public getOfertasDiversao(categoria: string): Promise<Oferta[]> {
     return this.http.get(`${URL_API}/ofertas?categoria=${categoria}`)
       .toPromise()
-      .then((retorno: any) => retorno.json());
+      .then((retorno: Response) => retorno.json());
   }
   public getOfertaId(id: number): Promise<Oferta> {
     return this.http.get(`${URL_API}/ofertas?id=${id}`)
       .toPromise()
-      .then((retorno: any) => retorno.json().shift()/*ou [0]*/);
+      .then((retorno: Response) => retorno.json().shift()/*ou [0]*/);
   }
 
   public getComoUsarOfertaId(id: number): Promise<string> {
     return this.http.get(`${URL_API}/como-usar?id=${id}`)
       .toPromise()
-      .then((retorno: any) => retorno.json().shift().descricao);
+      .then((retorno: Response) => retorno.json().shift().descricao);
   }
 
   public getOndeFicaOfertaId(id: number): Promise<string> {
     return this.http.get(`${URL_API}/onde-fica?id=${id}`)
       .toPromise()
-      .then((r: any) => r.json()[0].descricao);
+      .then((r: Response) => r.json()[0].descricao);
   }
   public pesquisaOfertas(termo: string): Observable<Oferta[]> {
-    return this.http.get(`${URL_API}/ofertas?descricao_oferta_like=${termo}`)// '_like' Busca por aproximação somente p API FAKE json-serve
-      .pipe(map((response: any) => response.json()));
+
+    // '_like' Busca por aproximação somente p API FAKE json-serve
+    return this.http.get(`${URL_API}/ofertas?descricao_oferta_like=${termo}`)
+      .pipe(retry(10))
+      .pipe(map((response: Response) => response.json()));
   }
 }
 
