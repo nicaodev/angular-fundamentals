@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subject, of } from 'rxjs';
-import { debounceTime, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { OfertasService } from '../services/ofertas.service';
 import { Oferta } from '../shared/oferta.model';
 
@@ -23,7 +23,8 @@ export class TopoComponent implements OnInit {
 
   ngOnInit() {
     this.ofertas = this.subjectPesquisa
-      .pipe(debounceTime(500)) // Executa a ação a cada 0.5 segundo.
+      .pipe(debounceTime(500))// Executa a ação a cada 0.5 segundo.
+      .pipe(distinctUntilChanged()) // Verifica se o termo anterior pesquisado é igual o  atual enviado.
       .pipe(switchMap((termo: string) => {
         if (termo.trim() === '') {
           // retorna um obj array vazio
