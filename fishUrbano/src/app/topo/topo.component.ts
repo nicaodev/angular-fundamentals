@@ -5,7 +5,7 @@ import { debounceTime, switchMap } from 'rxjs/operators';
 import { OfertasService } from '../services/ofertas.service';
 import { Oferta } from '../shared/oferta.model';
 
-
+import { of } from 'rxjs';
 @Component({
   selector: 'app-topo',
   templateUrl: './topo.component.html',
@@ -25,6 +25,10 @@ export class TopoComponent implements OnInit {
     this.ofertas = this.subjectPesquisa
       .pipe(debounceTime(500)) // Executa a ação a cada 0.5 segundo.
       .pipe(switchMap((termo: string) => {
+        if (termo.trim() === '') {
+          // retorna um obj array vazio
+          return of<Oferta[]>([]);
+        }
         return this.ofertaService.pesquisaOfertas(termo);
       }));
 
