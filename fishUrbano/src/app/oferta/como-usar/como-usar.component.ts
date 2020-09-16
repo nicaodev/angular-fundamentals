@@ -23,5 +23,4 @@ export class ComoUsarComponent implements OnInit {
         this.comoUsar = resposta;
       });
   }
-
 }
