@@ -23,7 +23,7 @@ export class TopoComponent implements OnInit {
 
   ngOnInit() {
     this.ofertas = this.subjectPesquisa
-      .pipe(debounceTime(500)) // Executa a ação a cada 1 segundo.
+      .pipe(debounceTime(500)) // Executa a ação a cada 0.5 segundo.
       .pipe(switchMap((termo: string) => {
         return this.ofertaService.pesquisaOfertas(termo);
       }));
@@ -32,18 +32,6 @@ export class TopoComponent implements OnInit {
   }
 
   public pesquisa(termoBusca: string): void {
-    // (<HTMLInputElement>event.target).value; // Usando uma var de referencia no html.
-    // this.ofertas = this.ofertaService.pesquisaOfertas(termoBusca);
-    // this.ofertas.subscribe(
-    //   (ofertas: Oferta[]) => console.log(ofertas),
-    //   (erro: any) => console.log(erro)
-    // );
-
-    // Utilizando um obsevable capaz de gerenciar os eventos criados e automaticamente manter
-    // a inscrição apenas no último para o termoBusca.
-
     this.subjectPesquisa.next(termoBusca);
-
   }
-
 }
