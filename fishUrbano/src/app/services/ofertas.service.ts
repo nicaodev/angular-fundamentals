@@ -1,10 +1,13 @@
 import { Oferta } from '../shared/oferta.model';
-import { promise } from 'protractor';
+import { URL_API } from 'src/environments/app.api';
 
 import { HttpModule, Http } from '@angular/http';
 import { Injectable } from '@angular/core';
+
+
+import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { URL_API } from 'src/environments/app.api';
+
 
 // Decorandoo service com injectable para ser possivel que esta classe receber um serviço externo.
 @Injectable()
@@ -48,20 +51,9 @@ export class OfertasService {
       .toPromise()
       .then((r: any) => r.json()[0].descricao);
   }
-
-  // public getOfertasPromise(): Promise<Oferta[]> {
-  //   return new Promise((resolve, reject) => {
-  //     // Alguma lógica de requisição que ao finalizar chama o 'resolve'.
-  //     let deu_certo = false; // logica hipotética.
-
-  //     if (!deu_certo) {
-  //       setTimeout(() => resolve(this.ofertas), 1000); // simulando uma requisição.
-  //     } else {
-  //       reject({ codigo_erro: 404, msg: 'Lógica hipotética apenas para simular erro' });
-  //     }
-
-  //   });
-  // }
-
+  public pesquisaOfertas(termo: string): Observable<Oferta[]> {
+    return this.http.get(`${URL_API}/ofertas?descricao_oferta_like=${termo}`)// '_like' Busca por aproximação somente p API FAKE json-serve
+      .pipe(map((response: any) => response.json()));
+  }
 }
 
