@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, of } from 'rxjs';
 import { debounceTime, switchMap } from 'rxjs/operators';
 import { OfertasService } from '../services/ofertas.service';
 import { Oferta } from '../shared/oferta.model';
 
-import { of } from 'rxjs';
+
 @Component({
   selector: 'app-topo',
   templateUrl: './topo.component.html',
