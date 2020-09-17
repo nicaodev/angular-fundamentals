@@ -10,9 +10,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 export class DescricaoReduzida implements PipeTransform {
 
-  transform(texto: string): string {
-    if (texto.length > 15) {
-      return texto.substr(0, 15) + '...';
+  transform(texto: string, posicaoTruncar: number): string {
+    // Recebendo parametro via declarção do Pipe e tratando aqui.
+
+    if (texto.length > posicaoTruncar) {
+      return texto.substr(0, posicaoTruncar) + '...';
     } else {
       return texto;
     }
