@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, Subject, of } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { Observable, Subject, of, pipe } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { OfertasService } from '../services/ofertas.service';
 import { Oferta } from '../shared/oferta.model';
 
@@ -31,7 +31,11 @@ export class TopoComponent implements OnInit {
           return of<Oferta[]>([]);
         }
         return this.ofertaService.pesquisaOfertas(termo);
+      })).pipe(catchError((err: any) => { // Tratando para que o component n quebre. Ainda retornará um obj Oferta.
+        console.log(err);
+        return of<Oferta[]>([]);
       }));
+
 
     this.ofertas.subscribe((retorno: Oferta[]) => console.log(retorno));
   }
