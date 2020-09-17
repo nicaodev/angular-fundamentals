@@ -10,9 +10,13 @@
         <div class="col-md-6">
           <input type="text" class="form-control" placeholder="Pesquise" #termoPesquisa
             (keyup)="pesquisa(termoPesquisa.value)">
-          <ul class="list-group" style="position: absolute">
+          <ul class="list-group" style="position: absolute; z-index: 999">
             <!-- Recuperando os valores do retorno observable diretamente no template, usando 'async' -->
-            <li class="list-group-item" *ngFor="let item of ofertas | async ">{{item.titulo | descReduzida: 15}}</li>
+            <li class="list-group-item" *ngFor="let item of ofertas | async ">
+              <a [routerLink]="['/oferta', item.id]" (click)="limpaPesquisa()">
+                {{item.titulo | descReduzida: 15}}
+              </a>
+            </li>
           </ul>
         </div>
 
