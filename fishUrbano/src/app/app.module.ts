@@ -7,8 +7,6 @@ import { TopoComponent } from './topo/topo.component';
 import { HomeComponent } from './home/home.component';
 import { RodapeComponent } from './rodape/rodape.component';
 
-
-
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 
@@ -20,6 +18,9 @@ import { OfertaComponent } from './oferta/oferta.component';
 import { ComoUsarComponent } from './oferta/como-usar/como-usar.component';
 import { OndeFicaComponent } from './oferta/onde-fica/onde-fica.component';
 
+// PIPES
+import { DescricaoReduzida } from './util/descricao-reduzida.pipe';
+
 
 registerLocaleData(localePt);
 @NgModule({
@@ -30,10 +31,11 @@ registerLocaleData(localePt);
     RodapeComponent,
     RestaurantesComponent,
     DiversaoComponent,
-      OfertaComponent,
-      ComoUsarComponent,
-      OndeFicaComponent
-   ],
+    OfertaComponent,
+    ComoUsarComponent,
+    OndeFicaComponent,
+    DescricaoReduzida
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
