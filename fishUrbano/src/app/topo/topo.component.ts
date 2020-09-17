@@ -5,7 +5,6 @@ import { catchError, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/
 import { OfertasService } from '../services/ofertas.service';
 import { Oferta } from '../shared/oferta.model';
 
-
 @Component({
   selector: 'app-topo',
   templateUrl: './topo.component.html',
@@ -15,6 +14,7 @@ import { Oferta } from '../shared/oferta.model';
 export class TopoComponent implements OnInit {
 
   ofertas: Observable<Oferta[]>;
+  ofertasTemplate: Oferta[];
 
   // Criando 'Proxy'. É tanto um objservable quanto um observável quanto um obsevador.
   private subjectPesquisa: Subject<string> = new Subject<string>();
@@ -24,7 +24,7 @@ export class TopoComponent implements OnInit {
   ngOnInit() {
     this.ofertas = this.subjectPesquisa
       .pipe(debounceTime(500))// Executa a ação a cada 0.5 segundo.
-      .pipe(distinctUntilChanged()) // Verifica se o termo anterior pesquisado é igual o  atual enviado.
+      .pipe(distinctUntilChanged()) // Para fazer pesquisas distintas
       .pipe(switchMap((termo: string) => {
         if (termo.trim() === '') {
           // retorna um obj array vazio
@@ -37,7 +37,10 @@ export class TopoComponent implements OnInit {
       }));
 
 
-    this.ofertas.subscribe((retorno: Oferta[]) => console.log(retorno));
+    this.ofertas.subscribe(
+      (retorno: Oferta[]) => {
+        this.ofertasTemplate = retorno;
+      });
   }
 
   public pesquisa(termoBusca: string): void {
