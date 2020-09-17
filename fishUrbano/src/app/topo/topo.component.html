@@ -11,7 +11,8 @@
           <input type="text" class="form-control" placeholder="Pesquise" #termoPesquisa
             (keyup)="pesquisa(termoPesquisa.value)">
           <ul class="list-group" style="position: absolute">
-            <li class="list-group-item" *ngFor="let item of ofertasTemplate">{{item.titulo | descReduzida: 15}}</li>
+            <!-- Recuperando os valores do retorno observable diretamente no template, usando 'async' -->
+            <li class="list-group-item" *ngFor="let item of ofertas | async ">{{item.titulo | descReduzida: 15}}</li>
           </ul>
         </div>
 

@@ -14,7 +14,6 @@ import { Oferta } from '../shared/oferta.model';
 export class TopoComponent implements OnInit {
 
   ofertas: Observable<Oferta[]>;
-  ofertasTemplate: Oferta[];
 
   // Criando 'Proxy'. É tanto um objservable quanto um observável quanto um obsevador.
   private subjectPesquisa: Subject<string> = new Subject<string>();
@@ -35,12 +34,6 @@ export class TopoComponent implements OnInit {
         console.log(err);
         return of<Oferta[]>([]);
       }));
-
-
-    this.ofertas.subscribe(
-      (retorno: Oferta[]) => {
-        this.ofertasTemplate = retorno;
-      });
   }
 
   public pesquisa(termoBusca: string): void {
