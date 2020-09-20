@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions } from '@angular/http';
+import { Http, RequestOptions, Response, Headers } from '@angular/http';
+
 import { Observable } from 'rxjs';
 import { URL_API } from 'src/environments/app.api';
 import { Pedido } from '../shared/pedido.model';
+
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class OrdemCompraService {
@@ -12,10 +15,13 @@ export class OrdemCompraService {
     // URL, BOdY e Headers
 
     let headers: Headers = new Headers();
+    headers.append('Content-type', 'application/json');
+
     return this.http.post(
       `${URL_API}/pedidos`,
-      JSON.stringify(pedido),
-      new RequestOptions({headers: headers})
-    )
+      JSON.stringify(pedido), { headers: headers }
+    ).pipe(
+      map(
+        (response: Response) => console.log('vamo ver o response ', response.json())));
   }
 }
