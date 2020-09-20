@@ -21,9 +21,7 @@ export class OrdemCompraService {
       `${URL_API}/pedidos`,
       JSON.stringify(pedido), { headers: headers }
     ).pipe(map(
-      (response: Response) => {
-        console.log('vamo ver o response ', response.json());
-      }
+      (response: Response) =>  response.json().id
     ));
   }
 }

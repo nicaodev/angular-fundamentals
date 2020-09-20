@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { OrdemCompraService } from '../services/ordem-compra.service';
 import { Pedido } from '../shared/pedido.model';
 
-
-
 @Component({
   selector: 'app-ordemCompra',
   templateUrl: './ordemCompra.component.html',
@@ -11,6 +9,8 @@ import { Pedido } from '../shared/pedido.model';
   providers: [OrdemCompraService]
 })
 export class OrdemCompraComponent implements OnInit {
+
+  idPedidoCompra: number;
 
   // Pedido
   pedido: Pedido = new Pedido('', '', '', '');
@@ -100,7 +100,9 @@ export class OrdemCompraComponent implements OnInit {
     this.pedido.numero = this.numero;
     this.pedido.formaPagamento = this.formaPagamento;
 
-
-    this.ordemCompraService.efetivarCompra(this.pedido).subscribe();
+    this.ordemCompraService.efetivarCompra(this.pedido)
+      .subscribe((idPedido: number) => {
+        this.idPedidoCompra = idPedido;
+      });
   }
 }

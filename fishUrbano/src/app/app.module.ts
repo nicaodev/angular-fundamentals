@@ -21,11 +21,12 @@ import { OndeFicaComponent } from './oferta/onde-fica/onde-fica.component';
 // PIPES
 import { DescricaoReduzida } from './util/descricao-reduzida.pipe';
 import { OrdemCompraComponent } from './ordemCompra/ordemCompra.component';
+import { OrdemCompraSucessoComponent } from './ordemCompraSucesso/ordemCompraSucesso.component';
 
 
 registerLocaleData(localePt);
 @NgModule({
-  declarations: [	
+  declarations: [		
     AppComponent,
     TopoComponent,
     HomeComponent,
@@ -36,7 +37,8 @@ registerLocaleData(localePt);
     ComoUsarComponent,
     OndeFicaComponent,
     DescricaoReduzida,
-      OrdemCompraComponent
+      OrdemCompraComponent,
+      OrdemCompraSucessoComponent
    ],
   imports: [
     BrowserModule,
