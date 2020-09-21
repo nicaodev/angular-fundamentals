@@ -7,6 +7,7 @@ import { TopoComponent } from './topo/topo.component';
 import { HomeComponent } from './home/home.component';
 import { RodapeComponent } from './rodape/rodape.component';
 
+
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 
@@ -22,11 +23,12 @@ import { OndeFicaComponent } from './oferta/onde-fica/onde-fica.component';
 import { DescricaoReduzida } from './util/descricao-reduzida.pipe';
 import { OrdemCompraComponent } from './ordemCompra/ordemCompra.component';
 import { OrdemCompraSucessoComponent } from './ordemCompraSucesso/ordemCompraSucesso.component';
+import { FormsModule } from '@angular/forms';
 
 
 registerLocaleData(localePt);
 @NgModule({
-  declarations: [		
+  declarations: [
     AppComponent,
     TopoComponent,
     HomeComponent,
@@ -43,7 +45,8 @@ registerLocaleData(localePt);
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    FormsModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
   bootstrap: [AppComponent]
