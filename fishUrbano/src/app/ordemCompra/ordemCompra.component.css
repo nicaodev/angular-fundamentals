@@ -2,3 +2,25 @@
   margin-top: 50px;
   margin-bottom: 150px;
 }
+
+/*
+ Tratando os eventos da classe que são inputadas via Angular ng-invalid.ng-touched
+ Para dar um feedback visual
+*/
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+select.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+input.ng-valid.ng-touched {
+  border: 1px solid green;
+}
+
+select.ng-valid.ng-touched {
+  border: 1px solid green;
+}
+
