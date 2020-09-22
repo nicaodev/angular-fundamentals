@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="ordem-compra" *ngIf="idPedidoCompra === undefined">
-    <form novalidate #formulario="ngForm" (ngSubmit)="confirmarCompra()">
+  <div class="ordem-compra">
+    <form [formGroup]="formulario" novalidate (ngSubmit)="confirmarCompra()">
 
       <h5>Sua Compra</h5>
       <hr />
@@ -61,10 +61,6 @@
         </div>
       </div>
       <br />
-      <!--
-      <pre>Válido ={{ formulario.valid | json}}</pre>
-      <pre>Inválido = {{formulario.invalid | json}}</pre>
-      <pre>{{formulario.value | json}}</pre> -->
 
       <h5>Dados de entrega</h5>
       <hr />
@@ -72,23 +68,18 @@
       <div class="form-row">
 
         <div class="form-group col-md-6">
-          <input type="text" class="form-control" placeholder="Endereço" autocomplete="off" ngModel name="endereco"
-            required minlength="3" maxlength="120" #inputEnd="ngModel">
-
-          <small *ngIf="inputEnd.valid && inputEnd.touched" class="form-text text-success">Válido</small>
-          <small *ngIf="!inputEnd.valid && inputEnd.touched" class="form-text text-danger">Endereço inválido</small>
+          <input type="text" class="form-control" placeholder="Endereço" autocomplete="off" formControlName="endereco">
+          <small class="form-text text-success">Ok</small>
         </div>
 
         <div class="form-group col-md-2">
-          <input type="text" class="form-control" placeholder="Número" autocomplete="off" ngModel name="numero"
-            minlength="1" maxlength="20" required #inputNum="ngModel">
-          <small *ngIf="inputNum.valid && inputNum.touched" class="form-text text-success">Válido</small>
-          <small *ngIf="!inputNum.valid && inputNum.touched" class="form-text text-danger">Número inválido</small>
+          <input type="text" class="form-control" placeholder="Número" autocomplete="off" formControlName="numero">
+          <small class="form-text text-success">Ok</small>
         </div>
 
         <div class="form-group col-md-4">
-          <input type="text" class="form-control" placeholder="Complemento" autocomplete="off" ngModel
-            name="complemento">
+          <input type="text" class="form-control" placeholder="Complemento" autocomplete="off"
+            formControlName="complemento">
         </div>
 
       </div>
@@ -100,23 +91,17 @@
       <div class="form-row">
 
         <div class="form-group col-md-3">
-          <select required class="form-control" ngModel name="formaPagamento" #inputFormPag="ngModel">
+          <select class="form-control" formControlName="formaPagamento">
             <option value="">Selecione uma opção</option>
             <option value="dinheiro">Dinheiro</option>
             <option value="debito">Débito</option>
           </select>
-          <small *ngIf="inputFormPag.valid && inputFormPag.touched" class="form-text text-success">Válido</small>
-          <small *ngIf="!inputFormPag.valid && inputFormPag.touched" class="form-text text-danger">Forma de pagamento
-            inválida</small>
+          <small class="form-text text-success">Ok</small>
         </div>
       </div>
 
       <hr />
       <button type="submit" class="btn btn-primary btn-lg">Cofirmar compra</button>
     </form>
-  </div>
-  <div *ngIf="idPedidoCompra !== undefined" class="ordem-compra">
-    <app-ordemCompraSucesso [idPedidoCompra]="idPedidoCompra"> </app-ordemCompraSucesso>
-
   </div>
 </div>

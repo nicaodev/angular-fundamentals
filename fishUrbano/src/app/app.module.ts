@@ -23,7 +23,7 @@ import { OndeFicaComponent } from './oferta/onde-fica/onde-fica.component';
 import { DescricaoReduzida } from './util/descricao-reduzida.pipe';
 import { OrdemCompraComponent } from './ordemCompra/ordemCompra.component';
 import { OrdemCompraSucessoComponent } from './ordemCompraSucesso/ordemCompraSucesso.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 registerLocaleData(localePt);
@@ -46,7 +46,7 @@ registerLocaleData(localePt);
     BrowserModule,
     AppRoutingModule,
     HttpModule,
-    FormsModule
+    ReactiveFormsModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
   bootstrap: [AppComponent]
