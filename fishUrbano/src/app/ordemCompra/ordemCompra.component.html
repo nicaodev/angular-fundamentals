@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="ordem-compra">
+  <div class="ordem-compra" *ngIf="idPedidoCompra === undefined">
     <form novalidate #formulario="ngForm" (ngSubmit)="confirmarCompra()">
 
       <h5>Sua Compra</h5>
@@ -61,10 +61,10 @@
         </div>
       </div>
       <br />
-
+      <!--
       <pre>Válido ={{ formulario.valid | json}}</pre>
       <pre>Inválido = {{formulario.invalid | json}}</pre>
-      <pre>{{formulario.value | json}}</pre>
+      <pre>{{formulario.value | json}}</pre> -->
 
       <h5>Dados de entrega</h5>
       <hr />
@@ -106,12 +106,17 @@
             <option value="debito">Débito</option>
           </select>
           <small *ngIf="inputFormPag.valid && inputFormPag.touched" class="form-text text-success">Válido</small>
-          <small *ngIf="!inputFormPag.valid && inputFormPag.touched" class="form-text text-danger">Forma de pagamento inválida</small>
+          <small *ngIf="!inputFormPag.valid && inputFormPag.touched" class="form-text text-danger">Forma de pagamento
+            inválida</small>
         </div>
       </div>
 
       <hr />
       <button type="submit" class="btn btn-primary btn-lg">Cofirmar compra</button>
     </form>
+  </div>
+  <div *ngIf="idPedidoCompra !== undefined" class="ordem-compra">
+    <app-ordemCompraSucesso [idPedidoCompra]="idPedidoCompra"> </app-ordemCompraSucesso>
+
   </div>
 </div>

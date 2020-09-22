@@ -187,63 +187,18 @@
   ],
   "pedidos": [
     {
+      "endereco": "rua 161",
+      "numero": "23",
+      "complemento": "compe",
+      "formaPagamento": "dinheiro",
       "id": 1
     },
     {
-      "endereco": "end2",
-      "numero": "2",
-      "complemento": "asdasd",
+      "endereco": "weq",
+      "numero": "23",
+      "complemento": "3",
       "formaPagamento": "dinheiro",
       "id": 2
-    },
-    {
-      "endereco": "rua 10",
-      "numero": "23",
-      "complemento": "esquina",
-      "formaPagamento": "dinheiro",
-      "id": 3
-    },
-    {
-      "endereco": "retorno",
-      "numero": "2",
-      "complemento": "",
-      "formaPagamento": "dinheiro",
-      "id": 4
-    },
-    {
-      "endereco": "pkkkk",
-      "numero": "23",
-      "complemento": "",
-      "formaPagamento": "dinheiro",
-      "id": 5
-    },
-    {
-      "endereco": "11111",
-      "numero": "1",
-      "complemento": "",
-      "formaPagamento": "dinheiro",
-      "id": 6
-    },
-    {
-      "endereco": "2222",
-      "numero": "222",
-      "complemento": "2",
-      "formaPagamento": "dinheiro",
-      "id": 7
-    },
-    {
-      "endereco": "estrah",
-      "numero": "23",
-      "complemento": "2",
-      "formaPagamento": "debito",
-      "id": 8
-    },
-    {
-      "endereco": "rua 161",
-      "numero": "23",
-      "complemento": "20",
-      "formaPagamento": "debito",
-      "id": 9
     }
   ]
 }
