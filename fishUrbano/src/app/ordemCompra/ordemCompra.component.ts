@@ -18,13 +18,31 @@ export class OrdemCompraComponent implements OnInit {
     'formaPagamento': new FormControl(null, Validators.required)
   });
 
+  idPedidoCompra: number;
+
   constructor(private ordemCompraService: OrdemCompraService) { }
 
   ngOnInit() { }
 
   confirmarCompra(): void {
 
-    console.log('oque tem', this.formulario);
+    if (this.formulario.status === 'INVALID') {
+      this.formulario.get('endereco').markAsTouched()
+      this.formulario.get('numero').markAsTouched()
+      this.formulario.get('complemento').markAsTouched()
+      this.formulario.get('formaPagamento').markAsTouched()
+    } else {
+      let pedido = new Pedido(
+        this.formulario.value.endereco,
+        this.formulario.value.numero,
+        this.formulario.value.complemento,
+        this.formulario.value.formaPagamento
+      );
+      this.ordemCompraService.efetivarCompra(pedido)
+        .subscribe((idPedido: number) => {
+          this.idPedidoCompra = idPedido;
+        });
+    }
   }
 
 }
