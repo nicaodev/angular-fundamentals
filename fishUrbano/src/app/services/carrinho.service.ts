@@ -17,7 +17,16 @@ export class CarrinhoService {
       oferta.valor,
       1
     );
-    this.itens.push(itemCarrinho);
+
+    // Verificando se item já existe no obj. Se sim, incrementa quantidade. Se não, inclui.
+
+    let jaExiste = this.itens.find((i: ItemCarrinho) => i.id === itemCarrinho.id);
+    if (jaExiste) {
+      jaExiste.quantidade += 1;
+    } else {
+      this.itens.push(itemCarrinho);
+    }
+
   }
 
 }
