@@ -49,5 +49,9 @@ export class OrdemCompraComponent implements OnInit {
         });
     }
   }
+  adiciona(item: ItemCarrinho, operador: string): void {
+    this.carrinhoService.alterarQuantidade(item, operador);
+
+  }
 
 }

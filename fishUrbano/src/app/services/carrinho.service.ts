@@ -31,8 +31,17 @@ export class CarrinhoService {
     this.itens.map((i: ItemCarrinho) => {
       total = total + (i.valor * i.quantidade); // Ao incluir vários itens iguais somente a quantidade muda.
     });
-
     return total;
+  }
+
+  public alterarQuantidade(itemCarrinho: ItemCarrinho, operador: string): void {
+    let itemEncontrado = this.itens.find((item: ItemCarrinho) => item.id === itemCarrinho.id);
+
+    if (itemEncontrado && operador === '+') {
+      itemEncontrado.quantidade += 1;
+    } else if (itemEncontrado && operador === '-') {
+      itemEncontrado.quantidade -= 1;
+    }
   }
 
 }
