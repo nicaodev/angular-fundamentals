@@ -41,6 +41,9 @@ export class CarrinhoService {
       itemEncontrado.quantidade += 1;
     } else if (itemEncontrado && operador === '-') {
       itemEncontrado.quantidade -= 1;
+      if (itemEncontrado.quantidade === 0) {
+        this.itens.splice(this.itens.indexOf(itemEncontrado), 1); // Splice(recorta o item do array). IndexOf(retorna o index do item). 1(qtd de item a serem removidos)
+      }
     }
   }
 
