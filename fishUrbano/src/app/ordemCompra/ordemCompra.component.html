@@ -5,7 +5,8 @@
       <h5>Sua Compra</h5>
       <hr />
 
-      <div *ngFor="let item of itensCarrinho" class="form-row" style="background: #FAFAFA; padding: 20px; border-bottom: solid 1px #F0F0F0">
+      <div *ngFor="let item of itensCarrinho" class="form-row"
+        style="background: #FAFAFA; padding: 20px; border-bottom: solid 1px #F0F0F0">
         <div class="form-group col-sm-1">
           <img [src]="item.img.url" class="img-fluid">
         </div>
@@ -32,7 +33,7 @@
 
       <div class="form-row">
         <div class="form-group col d-flex justify-content-end">
-          <h4>Total do pedido: 61.80</h4>
+          <h4>Total do pedido: {{carrinhoService.totalCarrinhoCompras() | currency: 'BRL'}}</h4>
         </div>
       </div>
       <br />

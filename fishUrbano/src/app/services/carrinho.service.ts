@@ -17,9 +17,7 @@ export class CarrinhoService {
       oferta.valor,
       1
     );
-
     // Verificando se item já existe no obj. Se sim, incrementa quantidade. Se não, inclui.
-
     let jaExiste = this.itens.find((i: ItemCarrinho) => i.id === itemCarrinho.id);
     if (jaExiste) {
       jaExiste.quantidade += 1;
@@ -27,6 +25,14 @@ export class CarrinhoService {
       this.itens.push(itemCarrinho);
     }
 
+  }
+  public totalCarrinhoCompras(): number {
+    let total = 0;
+    this.itens.map((i: ItemCarrinho) => {
+      total = total + (i.valor * i.quantidade); // Ao incluir vários itens iguais somente a quantidade muda.
+    });
+
+    return total;
   }
 
 }
