@@ -42,10 +42,14 @@ export class CarrinhoService {
     } else if (itemEncontrado && operador === '-') {
       itemEncontrado.quantidade -= 1;
       if (itemEncontrado.quantidade === 0) {
-        this.itens.splice(this.itens.indexOf(itemEncontrado), 1); // Splice(recorta o item do array). IndexOf(retorna o index do item). 1(qtd de item a serem removidos)
+        // Splice(recorta o item do array). IndexOf(retorna o index do item). 1(qtd de item a serem removidos)
+        this.itens.splice(this.itens.indexOf(itemEncontrado), 1);
       }
     }
   }
 
+  public limparCarrinho(): void {
+    this.itens = [];
+  }
 }
 
