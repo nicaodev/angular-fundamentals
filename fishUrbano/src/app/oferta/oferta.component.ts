@@ -31,8 +31,6 @@ export class OfertaComponent implements OnInit {
   }
 
   adicionarItemCarrinho(): void {
-
     this.carrinhoService.incluirItem(this.oferta);
-    console.log('exibindo se foi incluso', this.carrinhoService.exibirItens());
   }
 }
