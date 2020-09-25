@@ -6,22 +6,22 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Deploy
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+`ng build --prod `
 
-## Build
+## Deploy local via pacote http-server
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+`npm install http-server -g`
 
-## Running unit tests
+  Navegar até a pasta do projeto, na dist (build produção). Abrir o cmd e executar o comando: http-server
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  A partir de agora este diretório passará a ser servido via requisições http.
 
-## Running end-to-end tests
+  Starting up http-server, serving ./
+Available on:
+  `http://192.168.xx.xx:8080` 
+ ` http://127.0.0.1:8080 `
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+No primeiro IP, caso outros pc's estejam na mesma rede o pacote npm estará disponibilizando a pasta dist permitindo requisições http.
+O Segundo ip é local.
