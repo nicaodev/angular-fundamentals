@@ -1,4 +1,4 @@
-import { state, style, trigger } from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -13,6 +13,7 @@ import { Component, OnInit } from '@angular/core';
       state('visivel', style({
         opacity: 1
       })),
+      transition('escondido <=> visivel', animate('2s ease-in'))
     ])
   ]
 })
