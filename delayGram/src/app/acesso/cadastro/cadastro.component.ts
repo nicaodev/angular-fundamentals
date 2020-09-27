@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Usuario } from 'src/app/models/usuario.model';
+import { Autenticacao } from 'src/app/services/autenticacao.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -9,7 +10,7 @@ import { Usuario } from 'src/app/models/usuario.model';
 })
 export class CadastroComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth: Autenticacao) { }
 
   @Output() mostraPainelLogin: EventEmitter<string> = new EventEmitter();
 
@@ -28,8 +29,6 @@ export class CadastroComponent implements OnInit {
   }
 
   cadastrarUsuario(): void {
-
-
     let usuario: Usuario = new Usuario(
       this.formulario.value.email,
       this.formulario.value.nome_completo,
@@ -37,7 +36,7 @@ export class CadastroComponent implements OnInit {
       this.formulario.value.senha
     );
 
-    console.log('oq2', usuario);
+    this.auth.cadastrarUsuario(usuario);
   }
 
 }
