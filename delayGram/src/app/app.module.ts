@@ -15,6 +15,7 @@ import { LoginComponent } from './acesso/login/login.component';
 import { Autenticacao } from './services/autenticacao.service';
 import { HomeComponent } from './home/home.component';
 import { PublicacoesComponent } from './home/publicacoes/publicacoes.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
