@@ -4,11 +4,9 @@ import * as firebase from 'firebase';
 
 export class Autenticacao {
 
-  public cadastrarUsuario(user: Usuario): void {
+  public cadastrarUsuario(user: Usuario): Promise<any> {
 
-    console.log('chegamos no servico', user);
-
-    firebase.auth().createUserWithEmailAndPassword(user.email, user.senha)
+    return firebase.auth().createUserWithEmailAndPassword(user.email, user.senha)
       .then((retorno: any) => {
         // Removendo senha do obj a ser persistido.
         delete user.senha;
