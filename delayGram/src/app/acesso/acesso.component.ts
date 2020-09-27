@@ -33,9 +33,15 @@ export class AcessoComponent implements OnInit {
   estadoBanner = 'criado';
   estadoPainel = 'criado';
 
+  cadastro = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  exibirPainel(event: string): void {
+    this.cadastro = event === 'cadastro' ? true : false;
   }
 
 }
