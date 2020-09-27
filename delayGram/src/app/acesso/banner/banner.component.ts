@@ -1,6 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { Imagem } from './model/imagem.model';
+import { Imagem } from '../../models/imagem.model';
 
 @Component({
   selector: 'app-banner',
