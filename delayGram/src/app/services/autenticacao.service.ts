@@ -1,8 +1,15 @@
 import { Usuario } from '../models/usuario.model';
 
 import * as firebase from 'firebase';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
+@Injectable() // Injetar um serviço em outro serviço.
 export class Autenticacao {
+
+  tokenId: string;
+
+  constructor(private router: Router) { }
 
   public cadastrarUsuario(user: Usuario): Promise<any> {
 
@@ -21,7 +28,23 @@ export class Autenticacao {
 
   public autenticar(email: string, senha: string): void {
     firebase.auth().signInWithEmailAndPassword(email, senha)
-      .then((retorno: any) => console.log(retorno))
+      .then((retorno: any) => {
+        firebase.auth().currentUser.getIdToken()
+          .then((idToken: string) => {
+            this.tokenId = idToken;
+            localStorage.setItem('idToken', idToken);
+            this.router.navigate(['/home']);
+          });
+      })
       .catch((err: Error) => console.log('Erro: ', err));
+  }
+
+  autenticado(): boolean {
+
+    if (this.tokenId === undefined && localStorage.getItem('idToken') != null) {
+      this.tokenId = localStorage.getItem('idToken');
+    }
+
+    return this.tokenId !== undefined;
   }
 }

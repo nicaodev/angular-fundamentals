@@ -16,6 +16,7 @@ import { Autenticacao } from './services/autenticacao.service';
 import { HomeComponent } from './home/home.component';
 import { PublicacoesComponent } from './home/publicacoes/publicacoes.component';
 import { RouterModule } from '@angular/router';
+import { AutenticacaoGuard } from './services/autenticacao-guard.service';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { RouterModule } from '@angular/router';
     BrowserAnimationsModule,
     ReactiveFormsModule
   ],
-  providers: [Autenticacao],
+  providers: [Autenticacao, AutenticacaoGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
