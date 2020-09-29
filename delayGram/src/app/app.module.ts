@@ -18,6 +18,7 @@ import { PublicacoesComponent } from './home/publicacoes/publicacoes.component';
 import { RouterModule } from '@angular/router';
 import { AutenticacaoGuard } from './services/autenticacao-guard.service';
 import { IncluirPublicacaoComponent } from './home/incluirPublicacao/incluirPublicacao.component';
+import { Bd } from './services/bd.service';
 
 
 @NgModule({
@@ -38,7 +39,7 @@ import { IncluirPublicacaoComponent } from './home/incluirPublicacao/incluirPubl
     BrowserAnimationsModule,
     ReactiveFormsModule
   ],
-  providers: [Autenticacao, AutenticacaoGuard],
+  providers: [Autenticacao, AutenticacaoGuard, Bd],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
