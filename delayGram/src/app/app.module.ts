@@ -17,6 +17,7 @@ import { HomeComponent } from './home/home.component';
 import { PublicacoesComponent } from './home/publicacoes/publicacoes.component';
 import { RouterModule } from '@angular/router';
 import { AutenticacaoGuard } from './services/autenticacao-guard.service';
+import { IncluirPublicacaoComponent } from './home/incluirPublicacao/incluirPublicacao.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { AutenticacaoGuard } from './services/autenticacao-guard.service';
     CadastroComponent,
     LoginComponent,
     HomeComponent,
-    PublicacoesComponent
+    PublicacoesComponent,
+    IncluirPublicacaoComponent
 
   ],
   imports: [
