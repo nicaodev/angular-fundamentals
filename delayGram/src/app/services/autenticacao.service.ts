@@ -39,12 +39,21 @@ export class Autenticacao {
       .catch((err: Error) => console.log('Erro: ', err));
   }
 
-  autenticado(): boolean {
+  public autenticado(): boolean {
 
     if (this.tokenId === undefined && localStorage.getItem('idToken') != null) {
       this.tokenId = localStorage.getItem('idToken');
     }
 
     return this.tokenId !== undefined;
+  }
+  public sair(): void {
+
+    firebase.auth().signOut()
+      .then(() => {
+        localStorage.removeItem('idToken');
+        this.tokenId = undefined;
+        this.router.navigate(['/']);
+      })
   }
 }
