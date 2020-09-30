@@ -19,6 +19,10 @@ export class IncluirPublicacaoComponent implements OnInit {
 
   email: string;
   imagem: any;
+
+  progressoPublicacao = 'pendente';
+  porcentagemUpload: number;
+
   formulario: FormGroup = new FormGroup({
     'titulo': new FormControl(null)
   });
@@ -39,19 +43,19 @@ export class IncluirPublicacaoComponent implements OnInit {
     let continua = new Subject();
     continua.next(true);
 
-    let acompanharUpload = interval(1500).pipe(takeUntil(continua)).subscribe(() => {
-      console.log('statussss', this.progresso.status);
-      console.log('estadooooo', this.progresso.estado);
+    let acompanharUpload = interval(500).pipe(takeUntil(continua)).subscribe(() => {
+      this.progressoPublicacao = 'andamento';
+
+      this.porcentagemUpload = Math.round((this.progresso.estado.bytesTransferred / this.progresso.estado.totalBytes) * 100);
+
       if (this.progresso.status === 'Concluido') {
+        this.progressoPublicacao = 'concluido';
         continua.next(false);
       }
     });
-
-
   }
 
   preparaImagemUpload(event: Event): void {
     this.imagem = (<HTMLInputElement>event.target).files;
   }
-
 }

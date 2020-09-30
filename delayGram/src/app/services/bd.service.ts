@@ -8,8 +8,14 @@ export class Bd {
 
   public publicar(publicacao: any): void {
 
-    let nomeImagem = Date.now();
+    // firebase.database().ref(`publicacoes/${btoa(publicacao.email)}`)
+    //   .push({
+    //     titulo: publicacao.titulo
+    //   }).then((resposta: any) => {
+    //     console.log(resposta.key);
+    //   });// apgar
 
+    let nomeImagem = Date.now();
     //upload
     firebase.storage().ref()
       .child(`imagens/${nomeImagem}`)
@@ -29,14 +35,11 @@ export class Bd {
           // Callback de escuta de finalização do processo
           this.progresso.status = 'Concluido';
           // console.log('UPLOAD FEITO!!');
+
+          firebase.database().ref(`publicacoes/${btoa(publicacao.email)}`).push
+            ({ titulo: publicacao.titulo, url_imagem: nomeImagem });
         }
-      )
-    // firebase.database().ref(`publicacoes/${btoa(publicacao.email)}`)
-    // .push({
-    //   titulo: publicacao.titulo
-    // });
+      );
 
-
-    console.log('servico responsabel dados', publicacao);
   }
 }
