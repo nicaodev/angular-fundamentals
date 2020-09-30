@@ -19,6 +19,7 @@ import { RouterModule } from '@angular/router';
 import { AutenticacaoGuard } from './services/autenticacao-guard.service';
 import { IncluirPublicacaoComponent } from './home/incluirPublicacao/incluirPublicacao.component';
 import { Bd } from './services/bd.service';
+import { Progresso } from './services/progresso.service';
 
 
 @NgModule({
@@ -39,7 +40,7 @@ import { Bd } from './services/bd.service';
     BrowserAnimationsModule,
     ReactiveFormsModule
   ],
-  providers: [Autenticacao, AutenticacaoGuard, Bd],
+  providers: [Autenticacao, AutenticacaoGuard, Bd, Progresso],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
