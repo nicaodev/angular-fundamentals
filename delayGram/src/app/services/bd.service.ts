@@ -8,13 +8,6 @@ export class Bd {
 
   public publicar(publicacao: any): void {
 
-    // firebase.database().ref(`publicacoes/${btoa(publicacao.email)}`)
-    //   .push({
-    //     titulo: publicacao.titulo
-    //   }).then((resposta: any) => {
-    //     console.log(resposta.key);
-    //   });// apgar
-
     let nomeImagem = Date.now();
     //upload
     firebase.storage().ref()
@@ -25,21 +18,23 @@ export class Bd {
         (snapshot: any) => {
           this.progresso.status = 'Em andamento';
           this.progresso.estado = snapshot;
-          // console.log(snapshot);
         },
         (error) => {
           this.progresso.status = 'Deu ruim';
-          // console.log(error);
         },
         () => {
-          // Callback de escuta de finalização do processo
+          // Callback de escuta de finalização do processo + save imagem.
           this.progresso.status = 'Concluido';
-          // console.log('UPLOAD FEITO!!');
 
           firebase.database().ref(`publicacoes/${btoa(publicacao.email)}`).push
             ({ titulo: publicacao.titulo, url_imagem: nomeImagem });
         }
       );
-
   }
+  consultaPublicacoes(emailUser: string): any {
+    firebase.database().ref(`publicacoes/${btoa(emailUser)}`).once('value').then((snapshot: any) => {
+      console.log('recuprando infor', snapshot.val());
+    })
+  }
+
 }
