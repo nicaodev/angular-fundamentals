@@ -12,6 +12,6 @@
 
 <br /><br /><br />
 <div class="container">
-  <app-publicacoes></app-publicacoes>
-  <app-incluirPublicacao></app-incluirPublicacao>
+  <app-publicacoes #publicacoes></app-publicacoes>
+  <app-incluirPublicacao (atualizarTimeLine)="atualizarTimeLine()"></app-incluirPublicacao>
 </div>
