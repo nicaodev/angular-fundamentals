@@ -5,7 +5,7 @@
         <p class="card-text"><strong>{{publi.nome_usuario}}</strong></p>
       </div>
 
-      <img class="card-img" [src]="publi.url_imagem" />
+      <img class="card-img" [src]="publi.url_imagem || ''" />
 
       <div class="card-body">
         <p class="card-text">
@@ -13,11 +13,7 @@
         </p>
 
         <hr />
-        <input
-          type="text"
-          class="form-control comentario"
-          placeholder="Adicione um comentário..."
-        />
+        <input type="text" class="form-control comentario" placeholder="Adicione um comentário..." />
       </div>
     </div>
   </div>

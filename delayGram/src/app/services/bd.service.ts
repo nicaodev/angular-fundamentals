@@ -39,10 +39,44 @@ export class Bd {
       // Consultando as publicacoes(database)
       firebase.database().ref(`publicacoes/${btoa(emailUser)}`).once('value').then((snapshot: any) => {
 
-        let publicacoes: Array<any> = [];
+        let publicacoes: Array<any> = []; // Monstando array com base na sequencia de posts.
 
         snapshot.forEach((childSnapshot: any) => {
+          let publicacao = childSnapshot.val();
+          publicacao.key = childSnapshot.key;
+          publicacoes.push(publicacao);
+        });
+
+        return publicacoes.reverse(); // Revertendo o array
+      })
+        .then((publicacoes: any) => {
+
           // consultar url-tokenizada da imagem(storage)
+          publicacoes.forEach((publicacao) => {
+
+            firebase.storage().ref().child(`imagens/${publicacao.key}`)
+              .getDownloadURL()
+              .then((url: string) => {
+                publicacao.url_imagem = url;
+
+                //recuperando nome do user
+                firebase.database().ref(`usuario_detalhe/${btoa(emailUser)}`)
+                  .once('value').then((snapshot: any) => {
+                    publicacao.nome_usuario = snapshot.val().nome_usuario;
+                  });
+              });
+          });
+
+          resolve(publicacoes);
+        });
+    });
+  }
+}
+
+
+/**
+ *
+ * // consultar url-tokenizada da imagem(storage)
           let publicacao = childSnapshot.val();
 
           firebase.storage().ref().child(`imagens/${childSnapshot.key}`)
@@ -58,15 +92,4 @@ export class Bd {
                   publicacoes.push(publicacao);
                 });
             });
-        });
-        resolve(publicacoes);
-      });
-
-
-
-    });
-
-
-  }
-
-}
+ */
