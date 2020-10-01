@@ -34,28 +34,39 @@ export class Bd {
       });
 
   }
-  consultaPublicacoes(emailUser: string): any {
-    // Consultando as publicacoes(database)
-    firebase.database().ref(`publicacoes/${btoa(emailUser)}`).once('value').then((snapshot: any) => {
-      console.log('recuprando infor', snapshot.val());
+  consultaPublicacoes(emailUser: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      // Consultando as publicacoes(database)
+      firebase.database().ref(`publicacoes/${btoa(emailUser)}`).once('value').then((snapshot: any) => {
 
-      let publicacoes: Array<any> = [];
+        let publicacoes: Array<any> = [];
 
-      snapshot.forEach((childSnapshot: any) => {
-        // consultar url-tokenizada da imagem(storage)
-        let publicacao = childSnapshot.val();
+        snapshot.forEach((childSnapshot: any) => {
+          // consultar url-tokenizada da imagem(storage)
+          let publicacao = childSnapshot.val();
 
-        firebase.storage().ref().child(`imagens/${childSnapshot.key}`)
-          .getDownloadURL()
-          .then((url: string) => {
-            publicacao.url_imagem = url;
+          firebase.storage().ref().child(`imagens/${childSnapshot.key}`)
+            .getDownloadURL()
+            .then((url: string) => {
+              publicacao.url_imagem = url;
 
-            publicacoes.push(publicacao);
-          });
+              //recuperando nome do user
+              firebase.database().ref(`usuario_detalhe/${btoa(emailUser)}`)
+                .once('value').then((snapshot: any) => {
+                  publicacao.nome_usuario = snapshot.val().nome_usuario;
+
+                  publicacoes.push(publicacao);
+                });
+            });
+        });
+        resolve(publicacoes);
       });
 
-      console.log('rlaao', publicacoes);
+
+
     });
+
+
   }
 
 }
